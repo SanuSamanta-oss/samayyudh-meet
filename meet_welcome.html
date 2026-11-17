@@ -634,6 +634,214 @@
       gap: 12px;
     }
 
+    /* ==========================================================================
+       FACEBOOK REACTIONS 2.0 STYLE DOCK & BUTTON
+       ========================================================================== */
+    .reactions-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 14px;
+      margin-bottom: 4px;
+      z-index: 20;
+    }
+
+    /* Floating Reaction Dock (Popup Bar) */
+    .reaction-dock {
+      position: absolute;
+      bottom: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px) scale(0.85);
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(18, 16, 24, 0.95);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 40px;
+      padding: 6px 12px;
+      box-shadow: 
+        0 14px 40px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(212, 175, 55, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      transition: all 0.28s var(--transition-mech);
+      z-index: 50;
+    }
+
+    /* Active / Visible State of Dock */
+    .reactions-wrapper:hover .reaction-dock,
+    .reactions-wrapper.dock-open .reaction-dock {
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+
+    /* Pointer triangle underneath the dock */
+    .reaction-dock::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 6px 6px 0;
+      border-style: solid;
+      border-color: rgba(18, 16, 24, 0.95) transparent transparent;
+    }
+
+    /* Individual Emoji Buttons */
+    .reaction-item {
+      position: relative;
+      background: none;
+      border: none;
+      outline: none;
+      padding: 5px;
+      cursor: pointer;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .reaction-item .emoji-icon {
+      font-size: 26px;
+      line-height: 1;
+      display: block;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+    }
+
+    /* Wave magnification on hover (Facebook Reactions 2.0 style) */
+    .reaction-item:hover {
+      transform: scale(1.38) translateY(-6px);
+      z-index: 10;
+    }
+
+    .reaction-item:active {
+      transform: scale(1.15) translateY(-2px);
+    }
+
+    /* Tooltip above each emoji */
+    .reaction-tooltip {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      background: rgba(0, 0, 0, 0.88);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 3px 9px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      white-space: nowrap;
+      transition: all 0.18s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .reaction-item:hover .reaction-tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Main Reaction Trigger Pill Button */
+    .btn-react {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 30px;
+      padding: 8px 18px;
+      color: var(--cream);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      box-shadow: 
+        0 4px 14px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      transition: all 0.25s var(--transition-smooth);
+      position: relative;
+    }
+
+    .btn-react:hover {
+      background: rgba(212, 175, 55, 0.14);
+      border-color: var(--gold-primary);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .btn-react:active {
+      transform: translateY(1px);
+    }
+
+    .btn-react.has-reacted {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
+      border-color: var(--gold-primary);
+      color: #fff;
+    }
+
+    .btn-react-icon {
+      font-size: 16px;
+      line-height: 1;
+      display: inline-block;
+      transition: transform 0.25s var(--transition-mech);
+    }
+
+    .btn-react.has-reacted .btn-react-icon {
+      transform: scale(1.25);
+    }
+
+    .btn-react-counter {
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+      padding: 2px 7px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--gold-light);
+    }
+
+    /* Floating Burst Particles */
+    .reaction-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 100;
+      font-size: 24px;
+      user-select: none;
+      animation: floatUpBurst 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes floatUpBurst {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(0.6);
+      }
+      50% {
+        opacity: 1;
+        transform: translate(var(--dx), -60px) scale(1.3);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(var(--dx) * 1.4), -120px) scale(0.9);
+      }
+    }
+
     /* Premium Play / Pause Button */
     .btn-play {
       display: flex;
@@ -1034,6 +1242,42 @@
         </a>
       </div>
 
+      <!-- Section: Interactive Facebook Reactions 2.0 Style Reaction Dock -->
+      <div class="reactions-wrapper" id="reactions-wrapper">
+        <div class="reaction-dock" id="reaction-dock" role="toolbar" aria-label="Reactions">
+          <button type="button" class="reaction-item" data-reaction="like" aria-label="Like">
+            <span class="emoji-icon">👍</span>
+            <span class="reaction-tooltip">Like</span>
+          </button>
+          <button type="button" class="reaction-item" data-reaction="love" aria-label="Love">
+            <span class="emoji-icon">❤️</span>
+            <span class="reaction-tooltip">Love</span>
+          </button>
+          <button type="button" class="reaction-item" data-reaction="care" aria-label="Care">
+            <span class="emoji-icon">🥰</span>
+            <span class="reaction-tooltip">Care</span>
+          </button>
+          <button type="button" class="reaction-item" data-reaction="haha" aria-label="Haha">
+            <span class="emoji-icon">😂</span>
+            <span class="reaction-tooltip">Haha</span>
+          </button>
+          <button type="button" class="reaction-item" data-reaction="wow" aria-label="Wow">
+            <span class="emoji-icon">😮</span>
+            <span class="reaction-tooltip">Wow</span>
+          </button>
+          <button type="button" class="reaction-item" data-reaction="cheers" aria-label="Cheers">
+            <span class="emoji-icon">🥂</span>
+            <span class="reaction-tooltip">Cheers</span>
+          </button>
+        </div>
+
+        <button type="button" class="btn-react" id="btn-react" aria-haspopup="true" aria-expanded="false" aria-label="React to this welcome song">
+          <span class="btn-react-icon" id="btn-react-icon">❤️</span>
+          <span class="btn-react-label" id="btn-react-label">Love</span>
+          <span class="btn-react-counter" id="btn-react-counter">142</span>
+        </button>
+      </div>
+
       <!-- Status Live Region -->
       <div class="status-caption" id="status-caption" role="status" aria-live="polite">
         Tap the play button to place the needle and begin playback.
@@ -1424,6 +1668,112 @@
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           togglePlayback();
+        }
+      });
+
+      /* ==========================================================================
+         INTERACTIVE REACTIONS (Facebook Reactions 2.0 Style)
+         ========================================================================== */
+      const btnReact = document.getElementById('btn-react');
+      const btnReactIcon = document.getElementById('btn-react-icon');
+      const btnReactLabel = document.getElementById('btn-react-label');
+      const btnReactCounter = document.getElementById('btn-react-counter');
+      const reactionsWrapper = document.getElementById('reactions-wrapper');
+      const reactionItems = document.querySelectorAll('.reaction-item');
+
+      let currentReaction = localStorage.getItem('samayyudh_reaction') || null;
+      const baseCount = 142;
+
+      const reactionData = {
+        like: { emoji: '👍', label: 'Like' },
+        love: { emoji: '❤️', label: 'Love' },
+        care: { emoji: '🥰', label: 'Care' },
+        haha: { emoji: '😂', label: 'Haha' },
+        wow: { emoji: '😮', label: 'Wow' },
+        cheers: { emoji: '🥂', label: 'Cheers' }
+      };
+
+      if (currentReaction && reactionData[currentReaction]) {
+        btnReact.classList.add('has-reacted');
+        btnReactIcon.textContent = reactionData[currentReaction].emoji;
+        btnReactLabel.textContent = reactionData[currentReaction].label;
+        btnReactCounter.textContent = baseCount + 1;
+      }
+
+      function spawnReactionBurst(emoji, originEl) {
+        if (!originEl) return;
+        const rect = originEl.getBoundingClientRect();
+        const startX = rect.left + rect.width / 2;
+        const startY = rect.top + rect.height / 2;
+
+        const particleCount = 7;
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'reaction-particle';
+          particle.textContent = emoji;
+          particle.style.left = `${startX - 12}px`;
+          particle.style.top = `${startY - 12}px`;
+          const angle = (Math.random() - 0.5) * 90;
+          particle.style.setProperty('--dx', `${angle}px`);
+          particle.style.animationDelay = `${i * 0.05}s`;
+          document.body.appendChild(particle);
+
+          setTimeout(() => {
+            particle.remove();
+          }, 1400);
+        }
+      }
+
+      function applyReaction(reactionKey) {
+        const data = reactionData[reactionKey];
+        if (!data) return;
+
+        if (currentReaction === reactionKey) {
+          // Toggle off
+          currentReaction = null;
+          localStorage.removeItem('samayyudh_reaction');
+          btnReact.classList.remove('has-reacted');
+          btnReactIcon.textContent = '❤️';
+          btnReactLabel.textContent = 'Love';
+          btnReactCounter.textContent = baseCount;
+        } else {
+          // Apply new reaction
+          currentReaction = reactionKey;
+          localStorage.setItem('samayyudh_reaction', reactionKey);
+          btnReact.classList.add('has-reacted');
+          btnReactIcon.textContent = data.emoji;
+          btnReactLabel.textContent = data.label;
+          btnReactCounter.textContent = baseCount + 1;
+          spawnReactionBurst(data.emoji, btnReact);
+        }
+
+        reactionsWrapper.classList.remove('dock-open');
+        btnReact.setAttribute('aria-expanded', 'false');
+      }
+
+      reactionItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const reactionKey = item.getAttribute('data-reaction');
+          applyReaction(reactionKey);
+        });
+      });
+
+      btnReact.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!reactionsWrapper.classList.contains('dock-open')) {
+          reactionsWrapper.classList.add('dock-open');
+          btnReact.setAttribute('aria-expanded', 'true');
+        } else {
+          // If already open, quick tap defaults to Love reaction
+          applyReaction('love');
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!reactionsWrapper.contains(e.target)) {
+          reactionsWrapper.classList.remove('dock-open');
+          btnReact.setAttribute('aria-expanded', 'false');
         }
       });
 

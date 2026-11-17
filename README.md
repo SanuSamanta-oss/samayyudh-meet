@@ -9,6 +9,7 @@ Before entering the Google Meet room, guests are invited to immerse themselves i
 - **Realistic Mechanical Tonearm**: S-curve tonearm tube with gimbal base, counterweight, cartridge, and diamond stylus needle tip that physically swings over the record when playback starts.
 - **Cinematic Photography**: Atmospheric background and circular rotating label using the featured couple photograph (`kalale-cover.jpg`).
 - **YouTube Music Streaming**: Streams "Kalale" (`BIzOIEUrJS0`) using the official YouTube IFrame Player API.
+- **Interactive Reactions (Facebook Reactions 2.0 Style)**: Floating glassmorphism dock featuring animated reaction emojis (👍 Like, ❤️ Love, 🥰 Care, 😂 Haha, 😮 Wow, 🥂 Cheers) with hover magnification, particle bursts, live counters, and local persistence.
 - **Google Meet Unlock Mechanism**: Guests must listen to at least 15 seconds of actual music playback before the meeting button unlocks.
   - State tracking counts strictly confirmed `PLAYING` intervals.
   - Pausing, buffering, or loading stops the counter.
